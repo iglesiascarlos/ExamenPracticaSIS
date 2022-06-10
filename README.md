@@ -42,19 +42,74 @@ Una vez le damos nos saldrá despues de todo un mensaje parecido a este y será 
 
 <img width="709" alt="Captura de Pantalla 2022-06-10 a las 17 09 24" src="https://user-images.githubusercontent.com/91618773/173095681-31881c3a-ca37-4417-9472-84c6c333c225.png">
 
+Con este paso de compose up se nos genera la carpeta mysql-dumb
+
+<img width="502" alt="Captura de Pantalla 2022-06-10 a las 18 00 47" src="https://user-images.githubusercontent.com/91618773/173105734-2685f83c-4602-4a02-82d7-da50eb63c870.png">
 
 
-## Paso 3
-En el archivo Dockerfile importante que tenga la D mayuscula y la f minuscula (fallo muy común) lo que introduciremos en el es lo siguiente
+Una vez hemos hecho esto lo siguiente es ir a la carpeta mysql-dumb y crear el archivo USER.sql con el siguiente código:
 
-## Paso 4
+<img width="122" alt="Captura de Pantalla 2022-06-10 a las 18 02 20" src="https://user-images.githubusercontent.com/91618773/173105974-f7333d79-b32b-4e3c-ba01-6f70f07b6f17.png">
 
-## Paso 5
+<img width="425" alt="Captura de Pantalla 2022-06-10 a las 18 02 07" src="https://user-images.githubusercontent.com/91618773/173105943-00800006-b6c6-4574-9643-5e98d7231c3f.png">
 
-## Paso 6
+Ahora lo siguiente es comprobar que todo se ha desplegado correctamente y para ello comprobamos lo siguiente
+1. localhost:8081 (phpmyadmin)
+  
+  <img width="745" alt="Captura de Pantalla 2022-06-10 a las 18 03 50" src="https://user-images.githubusercontent.com/91618773/173106211-28642961-c273-4f66-af6b-d7d0a8e079d3.png">
+  
+  En el apartado de phpmyadmin tendremos que realizar un pequeño cambio debido a un fallo del proyecto que estamos usando este será el siguiente:  iremos a "testdb1", luego "USER", "Columnas" y "Nueva". Aquí crearemos una nueva columna llamada "regdit" con un valor/lognitud "20".
+  
+  <img width="304" alt="Captura de Pantalla 2022-06-10 a las 18 06 27" src="https://user-images.githubusercontent.com/91618773/173106738-7a633533-572b-4c1b-9bc3-473a2461a800.png">
 
-## Paso 7
+<img width="292" alt="Captura de Pantalla 2022-06-10 a las 18 13 18" src="https://user-images.githubusercontent.com/91618773/173107908-565e2a1b-99be-4d7c-bb26-820eeebe6e3f.png">
 
-## Paso 8
+Una vez hecho todo esto podemos comprobar que nos podemos registrar en el siguiente enlace:
 
-## Paso 9
+2. http://localhost:8082/LoginWebApp/
+  
+  <img width="660" alt="Captura de Pantalla 2022-06-10 a las 18 04 36" src="https://user-images.githubusercontent.com/91618773/173106323-83e7b7fc-627d-49d3-aeea-0db0ecaa8409.png">
+
+Aqui vamos a comprobar que nos podemos registrar:
+
+<img width="430" alt="Captura de Pantalla 2022-06-10 a las 18 14 35" src="https://user-images.githubusercontent.com/91618773/173108142-49285562-d126-464f-bf26-7a8dcd58ac41.png">
+
+<img width="289" alt="Captura de Pantalla 2022-06-10 a las 18 15 14" src="https://user-images.githubusercontent.com/91618773/173108261-3a89aa01-c327-4413-8184-78543b29d7c2.png">
+
+Podemos comprobar que la cuenta se ha creado correctamente consultando la direccioon localhost:8081 (phpmyadmin) y mirando en testdb1 la tabla USERS los usuarios creados que hay:
+
+<img width="371" alt="Captura de Pantalla 2022-06-10 a las 18 16 38" src="https://user-images.githubusercontent.com/91618773/173108480-b529ce7b-db08-489f-b672-38f4cf4c4c73.png">
+
+Teniendo tambien la informacion de cuando se esta realizando la practica por la tabla regdate (register date)
+
+
+Ahora como ultimo paso haremos un push para docker y que las imagenes esten subidas a docker hub para que se puedan descargar por otras personas, estas no se van a poder subir de forma conjunta con el compose asi que vamos a realizar 3 push de cada imagen independiente (phpmyadmin, mysql y tomcat).
+
+<img width="200" alt="Captura de Pantalla 2022-06-10 a las 18 19 38" src="https://user-images.githubusercontent.com/91618773/173108988-d7f41b4d-e94c-4a97-b844-8670fe3fa54d.png">
+
+A continuación nos preguntará con que usuarios queremos realizar el push, como ya hemos iniciado sesion posteriormente a la hora de entregar la practica nos sale de esta manera ya usando mi usuario iglesiascarlos (cuenta de docker hub) para hacer los 3 push:
+
+<img width="107" alt="Captura de Pantalla 2022-06-10 a las 18 21 44" src="https://user-images.githubusercontent.com/91618773/173109329-076b9c2b-b2f4-4e3e-b8e0-53d091f0833d.png">
+
+<img width="190" alt="Captura de Pantalla 2022-06-10 a las 18 21 25" src="https://user-images.githubusercontent.com/91618773/173109267-5c234032-ac67-4071-a34c-fc6063157fd2.png">
+
+Y por ultimo nos enseña por consola como se realiza el push:
+
+<img width="461" alt="Captura de Pantalla 2022-06-10 a las 18 22 23" src="https://user-images.githubusercontent.com/91618773/173109505-569dfee3-809c-4bc1-9b2c-da08c78583e5.png">
+
+Link docker hub mysql push:
+https://hub.docker.com/r/iglesiascarlos/mysql
+
+<img width="485" alt="Captura de Pantalla 2022-06-10 a las 18 28 45" src="https://user-images.githubusercontent.com/91618773/173110536-b8edc414-7a28-4739-8e2b-5db14a914109.png">
+
+Link docker hub tomcat push:
+https://hub.docker.com/r/iglesiascarlos/tomcat
+
+<img width="502" alt="Captura de Pantalla 2022-06-10 a las 18 29 09" src="https://user-images.githubusercontent.com/91618773/173110609-4d5b3eda-3cba-4304-93dc-79cce462072d.png">
+
+
+
+Link docker hub phpmyadmin push:
+https://hub.docker.com/r/iglesiascarlos/phpmyadmin
+
+<img width="688" alt="Captura de Pantalla 2022-06-10 a las 18 28 20" src="https://user-images.githubusercontent.com/91618773/173110465-4cce207a-76b6-4c78-a75c-627805bda4a8.png">
